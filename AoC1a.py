@@ -1,4 +1,4 @@
-with open('/home/micke/Dokument/AoC2020/puzzle1_input.txt') as fi:
+with open('p1_input.txt') as fi:
     in_data1 = [int(x) for x in fi.read().splitlines()]
     in_data2 = in_data1.copy()
     for item1 in in_data1:
