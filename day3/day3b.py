@@ -2,7 +2,7 @@ def race(hor_stp, vert_stp):
     with open('p3_input.txt') as fi:
         col = 0
         count = 0
-        for i, line in enumerate(fi, start=0):
+        for i, line in enumerate(fi):
             print(i, not i % vert_stp)
             if line[col % 31] == '#' and not i % vert_stp:
                 count += 1
