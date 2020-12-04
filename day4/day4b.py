@@ -1,8 +1,7 @@
 with open('p4_input.txt') as fi:
     count = 0
-    allowed_chars = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5',
-                     '6', '7', '8', '9']
-    allowed_digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    allowed_chars = set('abcdef0123456789')
+    allowed_digits = allowed_chars - set('abcdef')
     allowed_ecl = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
     in_data = fi.read().split('\n\n')
     for item in in_data:
@@ -30,26 +29,18 @@ with open('p4_input.txt') as fi:
                 iyr_OK = True
             if 2020 <= eyr_value <= 2030:
                 eyr_OK = True
-            if 'in'.casefold() in hgt_value and \
-                    59 <= int(hgt_value.split('in'.casefold())[0]) <= 76:
+            if 'in' in hgt_value and 59 <= int(hgt_value.split('in')[0]) <= 76:
                 hgt_OK = True
-            if 'cm'.casefold() in hgt_value and \
-                    150 <= int(hgt_value.split('cm'.casefold())[0]) <= 193:
+            if 'cm' in hgt_value and 150 <= int(hgt_value.split('cm')[0])\
+                    <= 193:
                 hgt_OK = True
-            if hcl_value[0] == '#' and len(hcl_value) == 7:
+            if hcl_value[0] == '#' and len(hcl_value) == 7 and \
+                    set(hcl_value[1:]).issubset(allowed_chars):
                 hcl_OK = True
-                for char in hcl_value[1:]:
-                    if char not in allowed_chars:
-                        hcl_OK = False
-                        break
             if ecl_value in allowed_ecl:
                 ecl_OK = True
-            if len(pid_value) == 9:
+            if len(pid_value) == 9 and set(pid_value).issubset(allowed_digits):
                 pid_OK = True
-                for char in pid_value:
-                    if char not in allowed_digits:
-                        pid_OK = False
-                        break
             if byr_OK and iyr_OK and eyr_OK and hgt_OK and hcl_OK and ecl_OK\
                     and pid_OK:
                 count += 1
