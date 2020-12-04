@@ -19,5 +19,5 @@ with open('p1_input.txt') as fi:
                               format(item1*item2*item3))
                         part2_done = True
                 if part1_done and part2_done:
-                    exit(0)
+                    exit()
 
