@@ -12,7 +12,7 @@ with open('p5_input.txt') as fi:
             if char == 'F':
                 max_row -= row_step
             else:
-                min_row -= row_step
+                min_row += row_step
             row_step = row_step >> 1
         row = max_row
         for char in item[7:]:
