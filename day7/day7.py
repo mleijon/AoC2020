@@ -1,5 +1,7 @@
+from itertools import chain
 fi = open('p7_input.txt')
 contents = dict()
+bag_count = 0
 
 
 def read_contents():
@@ -30,12 +32,15 @@ def contain_shiny_gold(color):
 
 
 def shiny_gold_contain(color):
+    global bag_count
     colors = [[x[1]]*int(x[0]) for x in contents[color]]
-    print(colors)
-    exit()
-        # if not item == 'no other bags':
-        #     shiny_gold_contain(item)
-        #     print(item)
+    colors = list(chain.from_iterable(colors))
+    for item in colors:
+        if not item == 'no other bags':
+            bag_count += 1
+            shiny_gold_contain(item)
+        else:
+            continue
 
 
 read_contents()
@@ -43,6 +48,6 @@ count = 0
 for color in contents.keys():
     if contain_shiny_gold(color):
         count += 1
-print('The answer to part is: {}'.format(count))
-bag_count = 0
+print('The answer to part is 1: {}'.format(count))
 shiny_gold_contain('shiny gold')
+print('The answer to part 2 is: {}'.format(bag_count))
