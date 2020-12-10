@@ -29,9 +29,20 @@ def contain_shiny_gold(color):
         return False
 
 
+def shiny_gold_contain(color):
+    colors = [[x[1]]*int(x[0]) for x in contents[color]]
+    print(colors)
+    exit()
+        # if not item == 'no other bags':
+        #     shiny_gold_contain(item)
+        #     print(item)
+
+
 read_contents()
 count = 0
 for color in contents.keys():
     if contain_shiny_gold(color):
         count += 1
 print('The answer to part is: {}'.format(count))
+bag_count = 0
+shiny_gold_contain('shiny gold')
