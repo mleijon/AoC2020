@@ -1,4 +1,9 @@
+class Dirs:
+    n = s = e = w = nw = ne = sw = se = False
+
+
 data = []
+n = s = e = w = nw = ne = sw = se = False
 with open('p11_input.txt') as fi:
     for line in fi:
         data.append(list(line))
@@ -9,9 +14,15 @@ def check_surroundings(inp_data, x, y):
     ymax = len(inp_data)
     xmin = ymin = 0
     surrounding = []
+    global n, s
+
     i = 1
     if x + i in range(xmin, xmax) and y in range(ymin, ymax):
-        surrounding.append(inp_data[y][x + i])
+        if not Dirs.e and inp_data[y][x + i] == '.':
+            pass
+        else:
+            surrounding.append(inp_data[y][x + i])
+            Dirs.e = True
         if y + i in range(ymin, ymax):
             surrounding.append(inp_data[y + i][x + i])
         if y - i in range(ymin, ymax):
