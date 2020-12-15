@@ -71,7 +71,7 @@ def check_surroundings(inp_data, x, y):
             else:
                 surrounding.append(inp_data[y - i][x])
                 dirs.n = True
-        if all([dirs.n, dirs.s, dirs.w, dirs.e, dirs.sw,dirs.se, dirs.ne,
+        if all([dirs.n, dirs.s, dirs.w, dirs.e, dirs.sw, dirs.se, dirs.ne,
                 dirs.nw]):
             return surrounding.count('#')
     return surrounding.count('#')
@@ -104,4 +104,3 @@ def iterate(data):
 
 
 iterate(data)
-
