@@ -1,5 +1,5 @@
 import multiprocessing as mp
-with open('p13_input.txt') as fi:
+with open('test.txt') as fi:
     teststr, datastr = fi.readlines()
 data = datastr.split(',')
 testnr = int(teststr)
@@ -20,25 +20,27 @@ for item in [x[0] for x in buses]:
         waittime = item - testnr % item
         store = item, waittime
 print('The answer to part 1 is: {}'.format(store[0] * store[1]))
-n = 0
+
 
 
 def runcheck(n):
+    global found
     for i in range(len(buses)):
         if (n + buses[i + 1][1] - buses[0][1]) % buses[i + 1][0] != 0:
             break
         elif i == len(buses) - 2:
             print('The answer to part 2 is: {}'.format(n - buses[0][1]))
-            exit()
+            p.close()
+            found = True
         else:
-            if i == len(buses) - 4:
-                print(n)
             continue
 
 
-while True:
+n = 0
+found = False
+while not found:
     n += mp.cpu_count() * buses[0][0]
-    jobs = [(n - x)*buses[0][0] for x in range(mp.cpu_count())]
+    jobs = [n - x*buses[0][0] for x in range(mp.cpu_count())]
     with mp.Pool(mp.cpu_count()) as p:
         p.map(runcheck, jobs)
 
