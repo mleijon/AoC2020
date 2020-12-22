@@ -1,4 +1,4 @@
-with open('p13_input.txt') as fi:
+with open('test.txt') as fi:
     teststr, datastr = fi.readlines()
 data = datastr.split(',')
 testnr = int(teststr)

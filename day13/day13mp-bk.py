@@ -46,8 +46,7 @@ if __name__ == '__main__':
     while True:
         n += mp.cpu_count() * buses[0][0]
         jobs = [n - x*buses[0][0] for x in range(mp.cpu_count())]
-        jobs = [[x] + tuple(buses) for x in jobs]
-        print(jobs)
+        jobs = [[x] + buses for x in jobs]
         with mp.Pool(mp.cpu_count()) as p:
             if True in p.map(runcheck, jobs):
                 p.terminate()
