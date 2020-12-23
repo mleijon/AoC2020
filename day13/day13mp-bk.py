@@ -1,6 +1,4 @@
 import multiprocessing as mp
-buses = list()
-found = bool
 
 
 def runcheck(n):
@@ -13,8 +11,6 @@ def runcheck(n):
             print('The answer to part 2 is: {}'.format(n - buses[0][1]))
             return True
         else:
-            if i == len(buses) - 4:
-                print(n)
             continue
     return False
 
@@ -25,6 +21,7 @@ if __name__ == '__main__':
     data = datastr.split(',')
     testnr = int(teststr)
     count = -1
+    buses = list()
     for item in data:
         try:
             buses.append((int(item), count + 1))
@@ -42,7 +39,6 @@ if __name__ == '__main__':
     print('The answer to part 1 is: {}'.format(store[0] * store[1]))
 
     n = 0
-    found = False
     while True:
         n += mp.cpu_count() * buses[0][0]
         jobs = [n - x*buses[0][0] for x in range(mp.cpu_count())]
