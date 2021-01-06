@@ -12,14 +12,14 @@ def runcheck(n):
                 print('The answer to part 2 is: {}'.format(item - buses[0][1]))
                 return True
             else:
-                if i == len(buses) - 4:
-                    print(item)
+                # if i == len(buses) - 3:
+                #     print(item)
                 continue
     return False
 
 
 if __name__ == '__main__':
-    with open('p13_input.txt') as fi:
+    with open('test.txt') as fi:
         teststr, datastr = fi.readlines()
     data = datastr.split(',')
     testnr = int(teststr)
@@ -42,8 +42,7 @@ if __name__ == '__main__':
     print('The answer to part 1 is: {}'.format(store[0] * store[1]))
 
     n = 0
-
-    mult = 1000000
+    mult = 1000
     m = mult * mp.cpu_count()
     while True:
         n += 1
