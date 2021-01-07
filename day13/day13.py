@@ -20,7 +20,7 @@ def runcheck(n):
 
 
 if __name__ == '__main__':
-    with open('p13_input.txt') as fi:
+    with open('test.txt') as fi:
         teststr, datastr = fi.readlines()
     data = datastr.split(',')
     testnr = int(teststr)
@@ -44,6 +44,6 @@ if __name__ == '__main__':
 
     while True:
         with mp.Pool(mp.cpu_count()) as p:
-            if True in p.map(runcheck, [0, 1, 2, 3, 4, 5, 6, 7]):
+            if True in p.map(runcheck, [x for x in range(mp.cpu_count())]):
                 p.terminate()
-                exit(0)
+                exit()
