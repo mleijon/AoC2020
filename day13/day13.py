@@ -46,4 +46,4 @@ if __name__ == '__main__':
         with mp.Pool(mp.cpu_count()) as p:
             if True in p.map(runcheck, [0, 1, 2, 3, 4, 5, 6, 7]):
                 p.terminate()
-                exit()
+                exit(0)
