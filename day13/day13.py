@@ -10,8 +10,9 @@ def runcheck(n, event):
     import itertools
     for j in itertools.count(n, step):
         item = j * multiplier
-        if event.is_set():
-            return
+        if (j - n)/step % 1000 == 0:
+            if event.is_set():
+                return
         for i in range(len(buses) - 1):
             if (item + buses[i + 1][1] - buses[0][1]) % buses[i + 1][0] != 0:
                 break
