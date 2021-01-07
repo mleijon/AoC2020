@@ -1,29 +1,28 @@
 import multiprocessing as mp
 buses = list()
 step = mp.cpu_count()
-m = mp.Manager()
-event = m.Event()
 multiplier = 0
 
 
-def runcheck(n, event):
+def runcheck(n):
     import itertools
     for j in itertools.count(n, step):
         item = j * multiplier
-        if event.is_set():
-            return
-        for i in range(len(buses) - 1):
+        for i in range(len(buses)):
             if (item + buses[i + 1][1] - buses[0][1]) % buses[i + 1][0] != 0:
                 break
             elif i == len(buses) - 2:
                 print('The answer to part 2 is: {}'.format(item - buses[0][1]))
-                event.set()
+                return True
             else:
+                if i == len(buses) - 4:
+                    print(item)
                 continue
+    return False
 
 
 if __name__ == '__main__':
-    with open('test.txt') as fi:
+    with open('p13_input.txt') as fi:
         teststr, datastr = fi.readlines()
     data = datastr.split(',')
     testnr = int(teststr)
@@ -45,9 +44,8 @@ if __name__ == '__main__':
             store = item, waittime
     print('The answer to part 1 is: {}'.format(store[0] * store[1]))
 
-    with mp.Pool(mp.cpu_count()) as p:
-        p.starmap(runcheck, [(x, event) for x in range(mp.cpu_count())])
-        p.close()
-        event.wait()
-        p.terminate()
-        exit()
+    while True:
+        with mp.Pool(mp.cpu_count()) as p:
+            if True in p.map(runcheck, [x for x in range(mp.cpu_count())]):
+                p.terminate()
+                exit()
