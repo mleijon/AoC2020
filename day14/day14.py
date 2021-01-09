@@ -1,4 +1,3 @@
-data = list()
 mem = dict()
 with open('p14_input.txt')  as fi:
     for item in fi.readlines():
@@ -22,8 +21,5 @@ with open('p14_input.txt')  as fi:
             number = int(mask_b, 2) ^ number
             adr = (item.split(' = ')[0].strip()).replace(']', '[').split('[')[1]
             mem[adr] = number
-sum_all = 0
-for key in mem.keys():
-    sum_all += mem[key]
-print('The answer to part 1 is: {}'.format(sum_all))
+print('The answer to part 1 is: {}'.format(sum(mem.values())))
 
