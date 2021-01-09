@@ -1,9 +1,8 @@
 mem = dict()
-with open('p14_input.txt')  as fi:
+with open('p14_input.txt') as fi:
     for item in fi.readlines():
         if item[:4] == 'mask':
-            mask_a = ''
-            mask_b = ''
+            mask_a = mask_b = ''
             current_mask = item.split('mask = ')[1].strip()
             for ch in current_mask:
                 if ch == 'X':
