@@ -21,4 +21,3 @@ with open('p14_input.txt') as fi:
             adr = (item.split(' = ')[0].strip()).replace(']', '[').split('[')[1]
             mem[adr] = number
 print('The answer to part 1 is: {}'.format(sum(mem.values())))
-
