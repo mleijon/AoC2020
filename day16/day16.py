@@ -13,3 +13,4 @@ with open('p16_input.txt') as fi:
                     tser += int(item)
 print('The answer to part 1 is: {}'.format(tser))
 
+
